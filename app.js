@@ -54,22 +54,26 @@ app.get("/hello/:user/:food", (req, res) => {
 });
 
 app.get("/calculator/:operator", (req, res) => {
-  const { num1, num2 } = req.query;
+  console.log(req);
+  let { num1, num2 } = req.query;
+  [num1, num2] = [Number(num1), Number(num2)];
   let total = 0;
   const { operator } = req.params;
+
   if (operator === "add") {
-    total = Number(num1) + Number(num2);
+    total = num1 + num2;
   }
   if (operator === "subtract") {
-    total = Number(num1) - Number(num2);
+    total = num1 - num2;
   }
   if (operator === "multiple") {
-    total = Number(num1) * Number(num2);
+    total = num1 * num2;
   }
   if (operator === "divide") {
-    total = Number(num1) / Number(num2);
+    total = num1 / num2;
   }
-  res.send("total is " + total);
+  res.send(req);
+  //   res.send("total is " + total);
 });
 
 // Export
