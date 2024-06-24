@@ -9,7 +9,6 @@ colors.get("/", (req, res) => {
 
 // Show
 colors.get("/:id", (req, res) => {
-  // /colors/cool
   const { id } = req.params;
   const color = colorsArray.find((color) => color.id === Number(id));
   if (color) {
