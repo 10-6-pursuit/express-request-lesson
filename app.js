@@ -79,5 +79,10 @@ app.get("/calculator/:operator", (req, res) => {
   //   res.send("total is " + total);
 });
 
+// 404 Page not found
+app.get("*", (req, res) => {
+  res.status(404).json({ error: "Page not found" });
+});
+
 // Export
 module.exports = app;
