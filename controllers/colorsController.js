@@ -18,4 +18,13 @@ colors.get("/:id", (req, res) => {
   }
 });
 
+// CREATE
+colors.post("/", (req, res) => {
+  // /colors
+  console.log("This is req.body", req.body);
+  const newColor = { ...req.body, id: colorsArray.length + 1 };
+  colorsArray.push(newColor);
+  res.json(colorsArray[colorsArray.length - 1]);
+});
+
 module.exports = colors;

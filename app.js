@@ -5,6 +5,9 @@ const express = require("express");
 // Configuration
 const app = express();
 
+// MIDDLEWARE
+app.use(express.json()); // parse incoming middleware
+
 // Routes
 app.get("/", (req, res) => {
   res.send("Welcome to my Express app");
@@ -13,41 +16,6 @@ app.get("/", (req, res) => {
 const colorsController = require("./controllers/colorsController.js");
 app.use("/colors", colorsController);
 
-// Index
-// app.get("/colors", (req, res) => {
-//   res.send(colors);
-// });
-
-// A route with an error
-// app.get("/colors/oops/:id", (req, res) => {
-//   const { id } = req.params;
-//   res.send(colors[id]);
-//   // error cannot send more than one response!
-//   res.send("This is the id: " + id);
-// });
-
-// This will never be reached
-// app.get("/colors/cool", (req, res) => {
-//   res.send(`
-//      <body
-//      style="background: linear-gradient(to bottom, ${colors[0]} 16%, ${colors[1]} 32%, ${colors[2]} 48%, ${colors[3]} 64%, ${colors[4]} 80%, ${colors[5]} 100%)"
-//      >
-//      <h1>Colors are cool!</h1>
-//      </body>
-//      `);
-// });
-
-// Show
-// app.get("/colors/:id", (req, res) => {
-//   // /colors/cool
-//   const { id } = req.params;
-//   const color = colors.find((color) => color.id === Number(id));
-//   if (color) {
-//     res.send(color);
-//   } else {
-//     res.send("Cannot find any colors with this id: " + id);
-//   }
-// });
 
 // Multiple Params
 app.get("/hello/:user/:food", (req, res) => {
