@@ -4,6 +4,7 @@ const colorsArray = require("../models/color.js");
 
 // Index
 colors.get("/", (req, res) => {
+  console.log("in Index Route");
   res.json(colorsArray);
 });
 
@@ -18,8 +19,21 @@ colors.get("/:id", (req, res) => {
   }
 });
 
+const checkForColorKey = (req, res, next) => {
+  if (req.body.hasOwnProperty("name")) {
+    return next();
+  } else {
+    res.send("You must supply an object with a key of `name`");
+  }
+};
+
+const justSayHi = (req, res, next) => {
+  console.log("Hi");
+  return next();
+};
+
 // CREATE
-colors.post("/", (req, res) => {
+colors.post("/", checkForColorKey, justSayHi, (req, res) => {
   // /colors
   console.log("This is req.body", req.body);
   const newColor = { ...req.body, id: colorsArray.length + 1 };
@@ -28,3 +42,23 @@ colors.post("/", (req, res) => {
 });
 
 module.exports = colors;
+
+/*
+METHOD  Restful Route 
+ GET    INDEX (Read)
+ GET    SHOW  (Read)
+ POST   CREATE
+ PUT    UPDATE
+ DELETE DESTROY
+*/
+
+// 
+// #	Action	URL	HTTP Verb	CRUD	Description
+// 1	Create	/disruptions	POST	Create	Create a new 
+// 2	Index	/disruptions	GET	Read	Get a list (or index) of all 
+// 3	Show	/disruptions/:id	GET	Read	Get an individual view (show one)
+// 4	Update	/disruptions/:id	PUT	Update	Update a 
+// 5	Destroy	/disruptions/:id	DELETE	Delete	Delete a 
+
+// Disruptions
+// date, type (closure, delay, none), duration, reason (snow, flooding, wind), message 
