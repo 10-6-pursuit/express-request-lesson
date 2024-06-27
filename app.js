@@ -13,13 +13,13 @@ app.use((req, res, next) => {
   return next();
 });
 
-app.use((req, res, next) => {
-  if (req.method === "POST" && !req.query.apikey) {
-    res.send("You must supply an API key");
-  } else {
-    return next();
-  }
-});
+// app.use((req, res, next) => {
+//   if (req.method === "POST" && !req.query.apikey) {
+//     res.send("You must supply an API key");
+//   } else {
+//     return next();
+//   }
+// });
 
 // Routes
 app.get("/", (req, res) => {
