@@ -4,8 +4,13 @@ const colorsArray = require("../models/color.js");
 
 // Index
 colors.get("/", (req, res) => {
-  console.log("in Index Route");
-  res.json(colorsArray);
+  try {
+    console.log("in Index Route");
+    console.log(colorsArray);
+    res.json(colorsArray);
+  } catch (error) {
+    res.send({ error });
+  }
 });
 
 // Show

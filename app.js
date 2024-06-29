@@ -1,12 +1,13 @@
 // Dependencies
 const express = require("express");
-// const colors = require("./models/color");
+const cors = require("cors");
 
 // Configuration
 const app = express();
 
 // MIDDLEWARE
 app.use(express.json()); // parse incoming middleware
+app.use(cors());
 
 app.use((req, res, next) => {
   console.log(req.method, req.headers.host, req.path);
